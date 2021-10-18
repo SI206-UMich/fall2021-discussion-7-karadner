@@ -21,57 +21,31 @@ def read_file(filename):
 
 def find_word(string_list):
     """ Return a list of words that contain three digit numbers in the middle. """
-
-    # initialize an empty list
-
-    # define the regular expression
-
-    # loop through each line of the string list 
-
-    # find all the words that match the regular expression in each line
-    
-    # loop through the found words and add the words to your empty list 
-
-    #return the list of all words that start with the letter B, E, or T
-    pass
-
+    words=[]
+    for line in string_list:
+        x=re.findall(r'\b([A-Za-z]+)\d{3}([A-Za-z]+)', line)
+        for word in x:
+            words.append(word)
+    return words
 
 def find_days(string_list):
     """ Return a list of days from the list of strings the dates format in the text are MM/DD/YYYY. """  
-
-    # initialize an empty list
-
-    # define the regular expression
-
-    # loop through each line of the string list
-    
-    # find all the dates that match the regular expression in each line
-    
-    # loop through the found dates and only add the days to your empty list 
-    
-    #return the list of days
-    pass
+    days=[]
+    for line in string_list:
+        x=re.findall(r'(\b\d{1,2})[\/](\d{1,2})[\/](\d{4})', line)
+        for day in x:
+            days.append(day[1])
+    return days
 
 def find_domains(string_list):
     """ Return a list of web address domains from the list of strings the domains of a wbsite are after www. """
-
-    # initialize an empty list
-
-    # define the regular expression
-
-    # loop through each line of the string list
-
-    # find all the domains that match the regular expression in each line
-
-    # loop through the found domains
-
-    # get the domain name by splitting the (//) after the https or http to get the website name
-    # then strip the www. to get only the domain name
-
-    # add the domains to your empty list
-    
-    #return the list of domains
-    pass
+    web=[]
+    for line in string_list:
+        x=re.findall(r'https?:\/\/[\w.]+', line)
+        for website in x:
+            dom=website.split('//')[1].strip('www.')
+            web.append(dom)
+    return web
 
 class TestAllMethods(unittest.TestCase):
 
